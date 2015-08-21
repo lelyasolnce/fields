@@ -35,6 +35,11 @@ Files SlicedPolynomialSubmatrix.h and SlicedPolynomialSubmatrix.inl implement cl
 
 File SlicedPolynomialMatrixWindow.h contains the definition of the class SlicedPolynomialMatrixWindow. It allows to create and to delete a submatrix and secures that elements outside the window are not changed while the window exists.
 
-File SlicedPolynomialMatrixCubicGauss contains implmentation of the naive Gauss elimination algorithm of complexity O(n^3). More about the algorithm can be found here: https://en.wikipedia.org/wiki/Gaussian_elimination.
+File SlicedPolynomialMatrixCubicGauss.h contains implementation of the naive Gauss elimination algorithm of complexity O(n^3). More about the algorithm can be found here: https://en.wikipedia.org/wiki/Gaussian_elimination.
+
+Files SlicedPolynomialMatrixFastGauss.h and SlicedPolynomialMatrixFastGauss.inl contain implementation of O(n^ω) fast PLS decomposition. The algorithm can be found here: http://arxiv.org/pdf/1006.1744v1.pdf.
+
+PLS decomposition allows to represent any m×n matrix A with rank r as a multiple A = PLS where P is a permutation matrix of dimension m × m, L is m × r unit lower triangular, S is an r × n matrix which is upper triangular except that its columns are
+permuted, that is S = UQ for U ia a r × n upper triangular and Q is a n × n permutation matrix.
 
 The foolder tests contains some tests for the implemented structures and rotines.
