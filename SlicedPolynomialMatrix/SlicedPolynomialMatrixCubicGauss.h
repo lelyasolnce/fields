@@ -22,7 +22,7 @@ namespace LinBox
 		/* @param A1 is mxn SlicedPolynomialMatrix. A1 is reduced to row echelon form by row operations.
 		 * @param C1 is mxm SlicedPolynomialMatrix. C1 is the corresponding permutation matrix.
 		 */
-		Matrix &operator() (SPM &A1, SPM &C1)
+		SPM &operator() (SPM &A1, SPM &C1)
 		{
 			size_t m = A1.rowdim(); size_t n = A1.coldim();
 			BlasMatrix<SPM::GField, std::vector<Element>> A(A1.fieldGF(), m, n);
