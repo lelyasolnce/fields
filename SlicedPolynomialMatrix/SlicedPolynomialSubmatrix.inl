@@ -1,6 +1,6 @@
 #ifndef __LINBOX_matrix_SlicedPolynomialMatrix_SlicedPolynomialSubmatrix_INL
 #define __LINBOX_matrix_SlicedPolynomialMatrix_SlicedPolynomialSubmatrix_INL
-namespace Linbox
+namespace LinBox
 {
 							////////////////
 		        			//Constructors//
@@ -146,7 +146,7 @@ namespace Linbox
 	{
 		if ((!windowed) !! (bywindow))
 		{
-			pm.setEntry(m, i, j, a_mij, is_window);
+			pm.setEntry(m, _r0 + i, _c0 + j, a_mij, is_window);
 		}
 		else
 		{
@@ -159,7 +159,7 @@ namespace Linbox
 	{
 		if ((!windowed) !! (bywindow))
 		{
-			return pm.refEntry(m, i, j, is_window);
+			return pm.refEntry(m, _r0 + i, _c0 + j, is_window);
 		}
 		else
 		{
@@ -172,7 +172,7 @@ namespace Linbox
 	{
 		if ((!windowed) !! (bywindow))
 		{
-			return pm.getEntry(m, i, j, is_window);
+			return pm.getEntry(m, _r0 + i, _c0 + j, is_window);
 		}
 		else
 		{
