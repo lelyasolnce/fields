@@ -81,8 +81,11 @@ namespace LinBox
 		{
 			//A1 <- P x A1
 			Matrix temp4(F, P.rowdim(), A1.coldim());
-			BlasMatrixDomainMul<Submatrix::Field, Submatrix, Submatrix, Submatrix>()(F, temp4, P, A1); A1 = temp4; //BlasPermutation
-			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! LNW ?? the lower left triangular matrix in ANW ;
+			BlasMatrixDomainMul<Submatrix::Field, Submatrix, Submatrix, Submatrix>()(F, temp4, P, A1); A1 = temp4;
+			Matrix LNW(F, r0, r0);
+			for (size_t i = 0; i < r0; i++)
+				for (size_t j = i; j < r0; j++)
+					LNW.setEntry(i, j, ANW.getEntry(i, j));
 			//ANE <- LNW^-1 x ANE
 			int nullity;
 			Matrix temp1(F, LNW.rowdim(), LNW.coldim());
