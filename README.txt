@@ -1,0 +1,43 @@
+The folder SlicedPolynomialMatrix can be added to linbox library to linbox/matrix for correct work.
+
+The task was to create a data structure class SlicedPolynomialMatrix and implement some routines for it.
+
+Files SlicedPolynomialMatrix.h and SlicedPolynomialMatrix.inl contain the definition of the class SlicedPolynomialMatrix.
+
+This data structure is based on the representation of matrices over the non-prime Galois Field GF(p^e) as polynomials that have for coefficients matrices over the prime Galois Field GF(p). Information about Galois Fields can be found there: http://en.wikipedia.org/wiki/Finite_field. This representation can take place because GF(p^e) is isomorphic to GF(p)[x]/(f(x)), where GF(p)[x] is the ring of polynomials over GF(p) and f(x) is an irreducible polynomial over GF(p) of degree e. Information about this isomorphism can be found there: http://en.wikipedia.org/wiki/Finite_field.
+
+The main member of this class is the vector V that contains BlasMatrices.
+
+Files SlicedPolynomialMatrixAddSub.h and SlicedPolynomialMatrixAddSub.inl contain classes that implement ordinary and inplace addition and subtraction of matrices belogning to the class SlicedPolynomialMatrix.
+
+These algorithms apply addition and subtraction routines of BlasMatrices to the corresponding elements of vectors V of the operands.
+
+Files SlicedPolynomialMatrixMulKratsuba.h and SlicedPolynomialMatrixKaratsuba.inl contain class that implements multiplication of two SlicedPolynomialMatrices using Karasuba multiplication algorithm.
+
+The Karatsuba algorithm is a fast multiplication algorithm for polynomials which requires only e^(ln3 / ln2) multiplications of coefficients, while classic algorithm requires e^2 multiplications of coefficients. It is described here: https://en.wikipedia.org/wiki/Karatsuba_algorithm. As SlicedPolynomialMatrices implement the representation of matrices over GF(p^e) as polynomials with matrix coefficients, Karatsuba algorithm can be applied to these polynomials.
+
+Files SlicedPolynomialMatrixMulToomCook.h and SlicedPolynomialMatrixMulToomCook.inl contain class that implements multiplication of two SlicedPolynomialMatrices using Toom-Cook multiplication algorithm.
+
+In this algorithm operands are handled as matrices with polynomial entries. These matrices are multiplied classically, while for multiplying polynomial entries of matrices the Toom-Cook algorithm is used. For efficiency each matrix coefficient is written in a row, and these e rows are combined into a BlasMatrix.
+
+File SlicedPolynomialMatrixParallelOperations.h contains parallelized routines (addition, subtraction and multiplication) of BlasMatrices. For parallelization OpenMP is used. OpenMP API is implemented in the gcc compiler. More information can be found on its site: http://openmp.org/wp/.
+
+Files SlicedPolynomialMatrixMulParallel.h and SlicedPolynomialMatrixMulParallel.inl contain Karatsuba and ToomCook algorithms implementation that use parallelized routines for BlasMatrices.
+
+Files SlicedPolynomialVector.h and SlicedPolynomialVector.inl contain the definition of the class SlicedPolynomialVector.
+
+This data structure is based on the representation of vectors over the non-prime Galois Field GF(p^e) as polynomials that have for coefficients vectors over the prime Galois Field GF(p).  This representation is based ont he same isomorphism of GF(p^e) and GF(p)[x]/(f(x)), where GF(p)[x] is the ring of polynomials over GF(p) and f(x) is an irreducible polynomial over GF(p) of degree e.
+
+The main member of this class is the vector V that contains BlasVectors.
+
+Files SlicedPolynomialVectorAddSub.h and SlicedPolynomialVectorAddSub.inl imlpement ordinary and inplace addition and subtraction. Files SlicedPolynomialMatrixVectorMulKaratsuba.h and SlicedPolynomialMatrixVectorMulKaratsuba.inl implement matrix-vector multiplication using Karatsuba algorithm.
+
+File SlicedPolynomialMatrixConversion.h allows to convert objects of the class SlicedPolynomialMatrix to two other posiible representations: BlasMatrix<GFqDom> and PolynomialMatrix. BlasMatrix<GFqDom> treats matrices as matrices over GFqDom, a representation of GF(p^e). PolynomialMatrix treats matrices as matrices with poynomial coefficients.
+
+Files SlicedPolynomialSubmatrix.h and SlicedPolynomialSubmatrix.inl implement class for operating on submatrices as if they were matrices. This class does not create a copy of elements of the original matrix. It creates only a pointer to them. Therefore operations are held on the original matrix itself.
+
+File SlicedPolynomialMatrixWindow.h contains the definition of the class SlicedPolynomialMatrixWindow. It allows to create and to delete a submatrix and secures that elements outside the window are not changed while the window exists.
+
+File SlicedPolynomialMatrixCubicGauss contains implmentation of the naive Gauss elimination algorithm of complexity O(n^3). More about the algorithm can be found here: https://en.wikipedia.org/wiki/Gaussian_elimination.
+
+The foolder tests contains some tests for the implemented structures and rotines.
