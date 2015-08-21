@@ -1,6 +1,6 @@
 #ifndef __LINBOX_matrix_SlicedPolynomialMatrix_SlicedPolynomialSubmatrix_H
 #define __LINBOX_matrix_SlicedPolynomialMatrix_SlicedPolynomialSubmatrix_H
-namespace Linbox
+namespace LinBox
 {
 	template<class ParentType>
 	class SlicedPolynomialSubmatrix
